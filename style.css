@@ -1,0 +1,61 @@
+p{
+  font-size: 24px;
+  color: white;
+}
+
+.weatherApp{
+  width: 600px;
+  height: 700px;
+  border-radius: 10px;
+  border-style: double;
+  border-width: 1px;
+  border-color: yellow;
+  background-color: black;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  }
+
+.appTitle {
+  height: 200px;
+
+}
+
+.location{
+  height: 100px;
+
+}
+
+.twcontainer{
+  display: inline;
+}
+
+.temp{
+  width: 200px;
+  height: 150px;
+
+}
+
+.weather{
+  width:400px;
+  height: 150px;
+
+}
+
+.icons{
+  width: 600px;
+  height: 200px;
+
+}
+
+.info{
+  height: 50px;
+width: 600px;
+}
+
+.debug{
+  border-color: yellow;
+  border-width: 1px;
+  border-style: dotted;
+
+}
