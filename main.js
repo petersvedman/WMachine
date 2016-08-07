@@ -48,7 +48,7 @@ function parseWinky() {
   // function to parse a winky
   weather.location = String(winky[0]['coord'].lon) + ' ' + String(winky[0]['coord'].lat);
   weather.skies = winky[0]['weather'][0].main;
-  weather.temp = winky[0]['main'].temp;
+  weather.temp = winky[0]['main'].temp-273.15;
 }
 
 parseWinky();
