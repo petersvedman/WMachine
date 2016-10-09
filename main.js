@@ -47,15 +47,27 @@ var winky = [{
 var weather = {
   location: "",
   skies: "",
-  temp: 0
+  temp: 0,
+  windSpeed: 0,
+  windDirection: ""
 }
 
 function parseWinky() {
   // function to parse a winky
-  weather.location = String(winky[0]['coord'].lat) + ' ' + String(winky[0]['coord'].lon);
-  weather.skies = winky[0]['weather'][0].main;
-  weather.temp = winky[0]['main'].temp-273.15;
+  // Make nicer strings
+  var latString = '';
+  var lonString = '';
+  if (winky[0]['coord'].lat<0){latString = "South"}
+  else {latString = "North"}
+  if (winky[0]['coord'].lon<0){lonString = "West"}
+  else {latString = "East"}
+
+  weather.location = String(Math.abs(winky[0]['coord'].lat)) + ' degrees '+ latString + ' ' + String(Math.abs(winky[0]['coord'].lon)) + ' degrees ' + lonString;
+  weather.skies = winky[0]['weather'][0].description;
+  weather.temp = Math.floor(winky[0]['main'].temp-273.15);
+  weather.windSpeed = Math.round(winky[0]['wind'].speed);
+  weather.windDirection = String(Math.floor(winky[0]['wind'].deg));
 }
 
 parseWinky();
-console.log(weather.location, weather.skies, weather.temp)
+console.log(weather.location, weather.skies, weather.temp, weather.windSpeed, weather.windDirection);
