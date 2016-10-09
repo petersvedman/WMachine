@@ -1,4 +1,10 @@
 // a winky is a JSON object from OpenWeather
+// lat positive = North
+// lat negative = South
+// lon positive = West
+// lon negative = East
+// To DO : parse out NSEW for lon/lat
+
 var winky = [{
   "coord": {
     "lon": -122.09,
@@ -46,9 +52,9 @@ var weather = {
 
 function parseWinky() {
   // function to parse a winky
-  weather.location = String(winky[0]['coord'].lon) + ' ' + String(winky[0]['coord'].lat);
+  weather.location = String(winky[0]['coord'].lat) + ' ' + String(winky[0]['coord'].lon);
   weather.skies = winky[0]['weather'][0].main;
-  weather.temp = winky[0]['main'].temp;
+  weather.temp = winky[0]['main'].temp-273.15;
 }
 
 parseWinky();
