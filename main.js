@@ -62,12 +62,40 @@ function parseWinky() {
   if (winky[0]['coord'].lon<0){lonString = "West"}
   else {latString = "East"}
 
-  weather.location = String(Math.abs(winky[0]['coord'].lat)) + ' degrees '+ latString + ' ' + String(Math.abs(winky[0]['coord'].lon)) + ' degrees ' + lonString;
+  //weather.location = String(Math.abs(winky[0]['coord'].lat)) + ' degrees '+ latString + ' ' + String(Math.abs(winky[0]['coord'].lon)) + ' degrees ' + lonString;
   weather.skies = winky[0]['weather'][0].description;
   weather.temp = Math.floor(winky[0]['main'].temp-273.15);
   weather.windSpeed = Math.round(winky[0]['wind'].speed);
   weather.windDirection = String(Math.floor(winky[0]['wind'].deg));
 }
+
+//get IP-based location Object
+
+var json = (function () {
+    var json = null;
+    $.ajax({
+        'async': false,
+        'global': false,
+        'url': "http://ip-api.com/json/",
+        'dataType': "json",
+        'success': function (data) {
+            json = data;
+        }
+    });
+    return json;
+})();
+
+console.log('DEBUG', json.city);
+// call OpenWeather with getIp['lat'], getIp['lon']
+
+var iconToDisplay = String(winky[0]['weather'][0].icon)
+console.log(iconToDisplay);
+var imageURL = 'http://openweathermap.org/img/w/'+iconToDisplay+'.png';
+
+ // call DOM manipulate icon URL
+
+
+
 
 parseWinky();
 console.log(weather.location, weather.skies, weather.temp, weather.windSpeed, weather.windDirection);
