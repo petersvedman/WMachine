@@ -4,41 +4,114 @@
     <meta charset="utf-8">
     <title>Ma Chi Ne</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <!-- Header start -->
       <div class="row">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-6"><h1 class="text-center" id="fccWeatherApp">Free Code Camp Weather App</h1></div>
-        <div class="col-xs-3"></div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+          <div class="panel panel-default wTop">
+            <div class="panel-body">
+              <h1 class="text-center" id="fccWeatherApp">Free Code Camp Weather App</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-1"></div>
       </div>
       <!-- Header end -->
       <!-- Location start -->
       <div class="row">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-2"><p id="location">Bollmora, SE</p></div>
-        <div class="col-xs-2"><p id="locLat">Latitude</p></div>
-        <div class="col-xs-2"><p id="locLon">Longitude</p></div>
-        <div class="col-xs-3"></div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Location</div>
+            <div class="panel-body">
+              <p id="location">Bollmora, SE</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Latitude</div>
+            <div class="panel-body">
+              <p id="locLat">Latitude </br>100 </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Longitude</div>
+            <div class="panel-body">
+              <p id="locLon">Longitude </br> 23</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xs-2"></div>
       </div>
       <!-- Location end -->
       <!-- Temp, wind start -->
       <div class="row">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-2"><p id="temp">9 o C</p></div>
-        <div class="col-xs-2"><p id="windDir">Wind SSE</p></div>
-        <div class="col-xs-2"><p id="windSp">1 m/second</p></div>
-        <div class="col-xs-3"></div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Temperature</div>
+            <div class="panel-body">
+              <p id="temp">9 o C </br> Kossa</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Wind direction</div>
+            <div class="panel-body">
+              <p id="windDir">Wind SSE</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Wind speed</div>
+            <div class="panel-body">
+              <p id="windSp">1 m/second</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xs-2"></div>
       </div>
       <!-- Temp, wind end -->
       <!-- Weather details start -->
       <div class="row">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-2"><p><img src="" alt="" id="iconz"></p></div>
-        <div class="col-xs-4"><p id="skies">Skies are cloudy</p></div>
-        <div class="col-xs-3"></div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">Weather</div>
+            <div class="panel-body">
+              <p><img src="http://openweathermap.org/img/w/10d.png" alt="" id="iconz"></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Weather looks</div>
+            <div class="panel-body">
+              <p id="skies">Skies are cloudy</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-2"></div>
       </div>
       <!-- Weather details end -->
       <!-- Ego stuff start -->
@@ -50,7 +123,7 @@
       <!-- Ego stuff end -->
     </div>
 
-    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="main.js"></script>
   </body>
 </html>
