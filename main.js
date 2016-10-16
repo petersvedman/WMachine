@@ -1,61 +1,49 @@
-// a winky is a JSON object from OpenWeather
+
 // lat positive = North
 // lat negative = South
 // lon positive = West
 // lon negative = East
 // To DO : parse out NSEW for lon/lat
 
-var winky = [{
-  "coord": {
-    "lon": -122.09,
-    "lat": 37.39
-  },
-  "sys": {
-    "type": 3,
-    "id": 168940,
-    "message": 0.0297,
-    "country": "US",
-    "sunrise": 1427723751,
-    "sunset": 1427768967
-  },
-  "weather": [{
-    "id": 800,
-    "main": "Clear",
-    "description": "Sky is Clear",
-    "icon": "01n"
-  }],
-  "base": "stations",
-  "main": {
-    "temp": 285.68,
-    "humidity": 74,
-    "pressure": 1016.8,
-    "temp_min": 284.82,
-    "temp_max": 286.48
-  },
-  "wind": {
-    "speed": 0.96,
-    "deg": 285.001
-  },
-  "clouds": {
-    "all": 0
-  },
-  "dt": 1427700245,
-  "id": 0,
-  "name": "Mountain View",
-  "cod": 200
-}]
-var weather = {
-  location: "",
-  skies: "",
-  temp: 0
-}
+//get IP-based location Object
 
-function parseWinky() {
-  // function to parse a winky
-  weather.location = String(winky[0]['coord'].lat) + ' ' + String(winky[0]['coord'].lon);
-  weather.skies = winky[0]['weather'][0].main;
-  weather.temp = winky[0]['main'].temp-273.15;
-}
+var locJson = (function () {
+    var json = null;
+    $.ajax({
+        'async': false,
+        'global': false,
+        'url': "http://ip-api.com/json/",
+        'dataType': "json",
+        'success': function (data) {
+            json = data;
+        }
+    });
+    return json;
+})();
 
-parseWinky();
-console.log(weather.location, weather.skies, weather.temp)
+/*
+console.log('DEBUG', locJson.city);
+console.log('DEBUG', locJson.lat);
+console.log('DEBUG', locJson.lon);
+*/
+
+// get weather at location
+
+var wJson = {};
+$.ajax(
+  {
+    url: "https://api.darksky.net/forecast/877c42bfced062f2b8e5cb98f65bb1ca/" + String(locJson.lat) + "," + String(locJson.lon),
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function(data) {
+      console.log(data);
+      wJson=data;
+    },
+    cache: false
+  });
+
+console.log(wJson);
+
+
+
+ // call DOM manipulate icon URL

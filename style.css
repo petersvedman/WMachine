@@ -1,8 +1,15 @@
 p{
-  font-size: 24px;
-  color: white;
+  font-size: 14px;
+  color: black;
 }
 
+.wTop {
+  margin-top: 50px;
+}
+
+}
+
+/*
 .weatherApp{
   width: 600px;
   height: 700px;
@@ -21,7 +28,7 @@ p{
 
 }
 
-.location{
+.location {
   height: 100px;
 
 }
@@ -52,7 +59,7 @@ p{
   height: 50px;
 width: 600px;
 }
-
+*/
 .debug{
   border-color: yellow;
   border-width: 1px;
