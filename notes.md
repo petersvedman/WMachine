@@ -68,3 +68,6 @@ function parseWinky() {
   weather.windSpeed = Math.round(winky[0]['wind'].speed);
   weather.windDirection = String(Math.floor(winky[0]['wind'].deg));
 }
+
+
+N, N by E, NNE, NE by N, NE, NE by E, ENE, E by N, E, E by S, ESE, SE by E, SE, SE by S, SSE, S by E, S, S by W, SSW, SW by S, SW, SW by W, WSW, W by S, W, W by N, WNW, NW by W, NW, NW by N, NNW, N by W, N 
