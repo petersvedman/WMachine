@@ -68,3 +68,151 @@ function parseWinky() {
   weather.windSpeed = Math.round(winky[0]['wind'].speed);
   weather.windDirection = String(Math.floor(winky[0]['wind'].deg));
 }
+
+
+N, N by E, NNE, NE by N, NE, NE by E, ENE, E by N, E, E by S, ESE, SE by E, SE, SE by S, SSE, S by E, S, S by W, SSW, SW by S, SW, SW by W, WSW, W by S, W, W by N, WNW, NW by W, NW, NW by N, NNW, N by W, N
+
+
+
+var geoOptions = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function geoSuccess(pos) {
+  var crd = pos.coords;
+
+  console.log('Your current position is:');
+  console.log('Latitude : ' + crd.latitude);
+  console.log('Longitude: ' + crd.longitude);
+  console.log('More or less ' + crd.accuracy + ' meters.');
+
+  //call to getJSON data promises.
+
+};
+
+function geoError(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+};
+
+// main start
+
+
+if ("geolocation" in navigator) {
+  /* geolocation is available */
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+} else {
+  /* geolocation IS NOT available */
+  console.log("Sorry, no geolocation service Available")
+}
+
+
+
+//
+
+var geoOptions = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+var tempToggle = false;
+
+var weatherUrl = "https://crossorigin.me/https://api.darksky.net/forecast/877c42bfced062f2b8e5cb98f65bb1ca/";
+
+var wJson = {};
+
+var winds = ['N', 'N by E', 'NNE', 'NE by N', 'NE', 'NE by E', 'ENE', 'E by N',
+                    'E', 'E by S', 'ESE', 'SE by E', 'SE', 'SE by S', 'SSE', 'S by E',
+                    'S', 'S by W', 'SSW', 'SW by S', 'SW', 'SW by W', 'WSW', 'W by S',
+                    'W', 'W by N', 'WNW', 'NW by W', 'NW', 'NW by N', 'NNW', 'N by W' ];
+
+// end global var section
+
+//begin Skycon section
+
+
+
+// begin AJAX section
+
+function get(url) {
+  // Return a new promise.
+  return new Promise(function(resolve, reject) {
+    // Do the usual XHR stuff
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+    req.onload = function() {
+      // This is called even on 404 etc
+      // so check the status
+      if (req.status == 200) {
+        // Resolve the promise with the response text
+        resolve(req.response);
+      }
+      else {
+        // Otherwise reject with the status text
+        // which will hopefully be a meaningful error
+        reject(Error(req.statusText));
+      }
+    };
+    // Handle network errors
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+
+    // Make the request
+    req.send();
+  });
+}
+
+function getJSON(url) {
+  return get(url).then(JSON.parse);
+}
+
+function workItOut(data){
+
+      wJson.temperature=Math.round((data.currently.temperature - 32) / 1.8);//temp to celsius
+      wJson.windSpeed=Math.round(data.currently.windSpeed * (1609/3600)); //convert miles/hour to m/sec
+      wJson.winds = winds[Math.floor(((data.currently.windBearing*1000)/11000))]; // find wind bearings
+      wJson.summary=data.currently.summary;
+      wJson.icon=data.currently.icon;
+      console.log(wJson);
+
+      document.getElementById("#temp").innerHTML = "Temperature " + String(wJson.temperature)+ "\u00B0" + " C";
+      document.getElementById("#windSp").innerHTML = "Wind "+ String(wJson.windSpeed)+' m/sec'+ " from " + wJson.winds;
+      document.getElementById("#skies").innerHTML = wJson.summary;
+
+      var icons = new Skycons();
+      icons.set('icon1', wJson.icon);
+      icons.play();
+}
+
+function geoSuccess(pos) {
+  var crd = pos.coords;
+  // get cracking on the weather
+
+  getJSON(weatherUrl+String(crd.latitude)+","+String(crd.longitude)).then(workItOut);
+
+  console.log('Your current position is:');
+  console.log('Latitude : ' + crd.latitude);
+  console.log('Longitude: ' + crd.longitude);
+  console.log('More or less ' + crd.accuracy + ' meters.');
+
+  //call to getJSON data promises.
+
+}
+
+function geoError(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+}
+
+// main start
+
+
+if ("geolocation" in navigator) {
+  /* geolocation is available */
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+} else {
+  /* geolocation IS NOT available */
+  console.log("Sorry, no geolocation service Available");
+}
